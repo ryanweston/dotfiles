@@ -1,0 +1,85 @@
+# Dynamic theme colors
+# config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+
+# ───────────────
+# Opacity
+# ───────────────
+background-opacity = 0.85
+
+# ───────────────
+# Core colors
+# ───────────────
+background = #000000
+foreground = #ffffff
+
+# ───────────────
+# Selection
+# ───────────────
+selection-background = #ffffff
+selection-foreground = #000000
+
+# ───────────────
+# Cursor
+# ───────────────
+cursor-color = #ffffff
+cursor-text = #000000
+
+# ───────────────
+# ANSI palette (Kitty exact)
+# ───────────────
+palette = 0=#000000
+palette = 1=#5f8787
+palette = 2=#dd9999
+palette = 3=#a06666
+palette = 4=#888888
+palette = 5=#999999
+palette = 6=#aaaaaa
+palette = 7=#c1c1c1
+
+palette = 8=#333333
+palette = 9=#5f8787
+palette = 10=#dd9999
+palette = 11=#a06666
+palette = 12=#888888
+palette = 13=#999999
+palette = 14=#aaaaaa
+palette = 15=#c1c1c1
+
+# ───────────────
+# Font 
+# ───────────────
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
+font-size = 16
+
+# ───────────────
+# Window 
+# ───────────────
+window-padding-x = 8
+window-padding-y = 8, 0
+window-padding-color = extend
+confirm-close-surface= false
+resize-overlay = never
+
+# ───────────────
+# Cursor 
+# ───────────────
+cursor-style = "block"
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+# ───────────────
+# Keybindings 
+# ───────────────
+keybind = f11=toggle_fullscreen
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100
+
+# ───────────────
+# Custom 
+# ───────────────
+mouse-scroll-multiplier = 0.95
