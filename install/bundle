@@ -1,0 +1,20 @@
+# -----------------------------------------------
+# Homebrew bundle file
+# Lists all formulae and casks to be installed by
+# `brew bundle`. Called from the install script —
+# config symlinking is handled separately by stow.
+# -----------------------------------------------
+
+brew "neovim"
+brew "starship"
+brew "zoxide"
+brew "fzf"
+brew "eza"
+brew "lazygit"
+
+# Casks are macOS only — on Linux these apps are
+# installed via the system package manager instead.
+if OS.mac?
+  cask_args appdir: "/Applications"
+  cask "ghostty"
+end
