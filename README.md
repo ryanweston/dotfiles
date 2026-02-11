@@ -4,11 +4,5 @@ The dotfiles here should use GNU stow for symlinks. The files in the home direct
 Add the bash configuration source to `.bashrc`.
 
 ```
-```
-```
-```
-```
-```
 source ~/.config/bash/config
-```
 ```
