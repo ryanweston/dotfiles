@@ -1,8 +1,8 @@
 # dotfiles
 
-Personal dotfiles for a modern terminal environment managed with [GNU Stow](https://www.gnu.org/software/stow/) and [Homebrew](https://brew.sh).
+Personal dotfiles for dev environment managed with [GNU Stow](https://www.gnu.org/software/stow/) and [Homebrew](https://brew.sh). Very hacked together, very much a work in progress.
 
-## What's included
+## 📦 What's included
 
 | Tool | Purpose |
 |---|---|
@@ -14,7 +14,7 @@ Personal dotfiles for a modern terminal environment managed with [GNU Stow](http
 | [eza](https://github.com/eza-community/eza) | Modern `ls` replacement |
 | [lazygit](https://github.com/jesseduffield/lazygit) | Terminal UI for git |
 
-## Quick start
+## 🚀 Quick start
 
 ```bash
 git clone git@github.com:ryanweston/dotfiles.git ~/dotfiles
@@ -27,7 +27,7 @@ cd ~/dotfiles
 stow -d ~/dotfiles -t ~ home
 ```
 
-## Structure
+## 🗂️ Structure
 
 ```
 dotfiles/
@@ -42,7 +42,7 @@ dotfiles/
         └── starship.toml
 ```
 
-## Bash
+## 🐚 Bash
 
 Add the following to your `.bashrc` to source the bash config:
 
