@@ -1,44 +1,32 @@
+-- LSP plugin overrides
+--
+-- Patches on_attach behaviour that can't be expressed
+-- through vim.lsp.config alone. Extend opts.servers
+-- below to configure additional LSP servers.
+
+-- Highlight custom Vue components (<MyComponent>) as type
+-- names. This token is only emitted by vue_ls in .vue files
+-- so it won't affect other languages.
+vim.api.nvim_set_hl(0, "@lsp.type.component", { link = "@type" })
+
 return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      -- Make sure Vue / TS servers exist in opts.servers
       opts.servers = opts.servers or {}
+      opts.servers.vtsls = opts.servers.vtsls or {}
 
-      -- Patch vue_ls (Volar) LSP
-      opts.servers.vue_ls = opts.servers.vue_ls or {}
-
-      local orig_on_attach = opts.servers.vue_ls.on_attach
-      opts.servers.vue_ls.on_attach = function(client, bufnr)
-        -- Keep original on_attach behavior
+      -- Disable vtsls semantic tokens in Vue files so they
+      -- don't clash with vue_ls. Without this, both servers
+      -- provide overlapping highlights causing flicker.
+      local orig_on_attach = opts.servers.vtsls.on_attach
+      opts.servers.vtsls.on_attach = function(client, bufnr)
         if orig_on_attach then
           orig_on_attach(client, bufnr)
         end
-
-        -- Enable semantic tokens for vue_ls
         if client.server_capabilities.semanticTokensProvider then
-          client.server_capabilities.semanticTokensProvider.full = true
-        end
-
-        -- Custom component highlight
-        pcall(vim.api.nvim_set_hl, 0, "@lsp.type.component", { link = "@type" })
-      end
-
-      -- Patch TS servers (vtsls / ts_ls) to avoid conflicts in Vue files
-      for _, name in ipairs({ "tsserver", "vtsls", "ts_ls" }) do
-        opts.servers[name] = opts.servers[name] or {}
-        local orig = opts.servers[name].on_attach
-        opts.servers[name].on_attach = function(client, bufnr)
-          if orig then
-            orig(client, bufnr)
-          end
-          if client.server_capabilities.semanticTokensProvider then
-            if vim.bo[bufnr].filetype == "vue" then
-              client.server_capabilities.semanticTokensProvider.full = false
-            else
-              client.server_capabilities.semanticTokensProvider.full = true
-            end
-          end
+          client.server_capabilities.semanticTokensProvider.full =
+            vim.bo[bufnr].filetype ~= "vue"
         end
       end
     end,
