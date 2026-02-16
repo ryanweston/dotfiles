@@ -2,6 +2,11 @@
 # config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 
 # ───────────────
+# Shell
+# ───────────────
+shell-integration = fish
+
+# ───────────────
 # Opacity
 # ───────────────
 background-opacity = 0.85
@@ -50,7 +55,7 @@ palette = 15=#c1c1c1
 # ───────────────
 font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
-font-size = 16
+font-size = 18
 
 # ───────────────
 # Window 
