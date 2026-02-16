@@ -51,14 +51,14 @@ palette = 14=#aaaaaa
 palette = 15=#c1c1c1
 
 # ───────────────
-# Font 
+# Font
 # ───────────────
 font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
 font-size = 18
 
 # ───────────────
-# Window 
+# Window
 # ───────────────
 window-width = 90
 window-height = 30
@@ -71,14 +71,14 @@ confirm-close-surface= false
 resize-overlay = never
 
 # ───────────────
-# Cursor 
+# Cursor
 # ───────────────
 cursor-style = "block"
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
 # ───────────────
-# Keybindings 
+# Keybindings
 # ───────────────
 keybind = f11=toggle_fullscreen
 keybind = shift+insert=paste_from_clipboard
@@ -89,6 +89,6 @@ keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 
 # ───────────────
-# Custom 
+# Custom
 # ───────────────
 mouse-scroll-multiplier = 0.95
