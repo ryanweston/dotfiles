@@ -11,10 +11,15 @@ brew "zoxide"
 brew "fzf"
 brew "eza"
 brew "lazygit"
+brew "fish"
+brew "fisher"
+brew "stow"
 
 # Casks are macOS only — on Linux these apps are
 # installed via the system package manager instead.
 if OS.mac?
   cask_args appdir: "/Applications"
   cask "ghostty"
+  cask "obsidian"
+  cask "raycast"
 end
