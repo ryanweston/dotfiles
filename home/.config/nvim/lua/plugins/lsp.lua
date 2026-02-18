@@ -4,31 +4,66 @@
 -- through vim.lsp.config alone. Extend opts.servers
 -- below to configure additional LSP servers.
 
--- Highlight custom Vue components (<MyComponent>) as type
--- names. This token is only emitted by vue_ls in .vue files
--- so it won't affect other languages.
-vim.api.nvim_set_hl(0, "@lsp.type.component", { link = "@type" })
-
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.servers = opts.servers or {}
-      opts.servers.vtsls = opts.servers.vtsls or {}
+    event = { "BufReadPre" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
+    dependencies = {
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
+    },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "vtsls",
+          "vue_ls",
+          "eslint",
+          "lua_ls",
+          "eslint_d",
+        },
+        automatic_enable = true,
+        automatic_installation = true,
+      })
 
-      -- Disable vtsls semantic tokens in Vue files so they
-      -- don't clash with vue_ls. Without this, both servers
-      -- provide overlapping highlights causing flicker.
-      local orig_on_attach = opts.servers.vtsls.on_attach
-      opts.servers.vtsls.on_attach = function(client, bufnr)
-        if orig_on_attach then
-          orig_on_attach(client, bufnr)
-        end
-        if client.server_capabilities.semanticTokensProvider then
-          client.server_capabilities.semanticTokensProvider.full =
-            vim.bo[bufnr].filetype ~= "vue"
-        end
-      end
+      -- Highlight custom Vue components (<MyComponent>) as type
+      -- names. This token is only emitted by vue_ls in .vue files
+      -- so it won't affect other languages.
+      vim.api.nvim_set_hl(0, "@lsp.type.component", { link = "@type" })
+
+      local vue_language_server_path = vim.fn.expand("$MASON/packages")
+        .. "/vue-language-server"
+        .. "/node_modules/@vue/language-server"
+
+      local vue_plugin = {
+        name = "@vue/typescript_plugin",
+        location = vue_language_server_path,
+        languages = { "vue" },
+        configNamespace = "typescript",
+      }
+
+      local vtsls_config = {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                vue_plugin,
+              },
+            },
+          },
+        },
+      }
+      local vue_ls_config = {
+        init_options = {
+          typescript = {},
+        },
+        on_attach = function(client)
+          client.server_capabilities.semanticTokensProvider.full = true
+        end,
+      }
+
+      vim.lsp.config("vtsls", vtsls_config)
+      vim.lsp.config("vue_ls", vue_ls_config)
     end,
   },
 }
