@@ -54,7 +54,7 @@ palette = 15=#acb0d0
 # ───────────────
 font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
-font-size = 16
+font-size = 14
 
 # ───────────────
 # Window
@@ -91,3 +91,6 @@ keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 # Custom
 # ───────────────
 mouse-scroll-multiplier = 0.95
+
+# Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
+async-backend = epoll
