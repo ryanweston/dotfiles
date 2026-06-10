@@ -23,4 +23,5 @@ if OS.mac?
   cask "ghostty"
   cask "obsidian"
   cask "raycast"
+  cask "claude-code"
 end
