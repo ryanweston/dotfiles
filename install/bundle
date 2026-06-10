@@ -25,4 +25,5 @@ if OS.mac?
   cask "obsidian"
   cask "raycast"
   cask "claude-code"
+  cask "protonvpn"
 end
