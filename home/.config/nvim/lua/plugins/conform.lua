@@ -17,7 +17,7 @@ end, {
 })
 
 return {
-  "stevenarc/conform.nvim",
+  "stevearc/conform.nvim",
   event = { "BufWritePre" },
   cmd = "ConformInfo",
   opts = {
