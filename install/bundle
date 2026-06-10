@@ -15,6 +15,7 @@ brew "fish"
 brew "fisher"
 brew "stow"
 brew "tailscale"
+brew "pnpm"
 
 # Casks are macOS only — on Linux these apps are
 # installed via the system package manager instead.
